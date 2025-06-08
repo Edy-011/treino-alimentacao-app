@@ -1,0 +1,2923 @@
+/* ===== DESIGN SYSTEM PREMIUM ===== */
+:root {
+    /* Cores principais */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+    /* New colors from the code block */
+    --primary-blue: #3b82f6;
+    --primary-purple: #667eea;
+    --success-green: #10b981;
+    --warning-orange: #f59e0b;
+    --danger-red: #ef4444;
+    --neutral-gray: #6b7280;
+}
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: var(--spacing-md);
+    line-height: 1.6;
+    color: #1a202c;
+    overflow-x: hidden;
+}
+
+/* Background animado */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+    animation: backgroundFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    /* REMOVENDO fundo branco - deixando transparente */
+    background: transparent !important;
+    /* REMOVENDO backdrop-filter que criava o fundo branco */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    /* REMOVENDO borda branca */
+    border: none !important;
+    /* REMOVENDO border-radius */
+    border-radius: 0 !important;
+    /* REMOVENDO sombra */
+    box-shadow: none !important;
+    overflow: visible !important;
+    position: relative;
+}
+
+/* REMOVENDO linha branca do topo */
+.container::before {
+    display: none !important;
+}
+
+/* ===== HEADER PREMIUM ===== */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    padding: 30px 20px !important;
+    text-align: center !important;
+    color: white !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="20" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    animation: headerPattern 20s linear infinite;
+    pointer-events: none;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+}
+
+.date {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-top: 15px;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.workout-time {
+    display: none !important;
+}
+
+/* ===== SEÇÕES ===== */
+section {
+        padding: var(--spacing-lg) !important;
+    border-bottom: none !important;
+}
+
+/* ===== DASHBOARD DE PROGRESSO MELHORADO ===== */
+
+/* Seção dashboard - SEM fundo */
+section.dashboard {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: var(--spacing-lg) !important;
+    margin: 0 !important;
+}
+
+/* Título do dashboard - SEM fundo extra */
+.dashboard h2 {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #f7fafc !important;
+    padding: 15px 0 !important;
+    margin-bottom: var(--spacing-2xl) !important;
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.8),
+        0 2px 4px rgba(0,0,0,0.6),
+        0 0 20px rgba(255,255,255,0.1) !important;
+}
+
+/* Progress container - SEM fundo */
+.progress-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Progress items - APENAS fundo escuro individual */
+.progress-item {
+        background: rgba(0, 0, 0, 0.3) !important;
+        color: #f7fafc !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: var(--spacing-xl) !important;
+    box-shadow: var(--shadow-lg) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    backdrop-filter: blur(10px) !important;
+    margin: 0 !important;
+}
+
+/* Remover qualquer wrapper ou container que possa ter fundo branco */
+.dashboard * {
+    background-color: transparent !important;
+}
+
+/* Sobrescrever especificamente os progress-items */
+.progress-item {
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+
+.progress-item[data-category="geral"],
+.progress-item[data-category="alimentacao"],
+.progress-item[data-category="hidratacao"],
+.progress-item[data-category="treino"] {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Garantir que todas as seções não tenham fundo branco */
+section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Forçar transparência em qualquer elemento que possa ter fundo */
+.dashboard,
+.dashboard::before,
+.dashboard::after,
+.progress-container,
+.progress-container::before,
+.progress-container::after {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Apenas os cards individuais têm fundo escuro */
+.progress-item,
+.card,
+.water-info {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Hover mantém o escuro */
+.progress-item:hover {
+    background: rgba(0, 0, 0, 0.4) !important;
+    transform: translateY(-12px) !important;
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Responsividade mantendo transparência */
+@media (max-width: 768px) {
+    section.dashboard {
+        background: transparent !important;
+        padding: var(--spacing-md) !important;
+        margin: 0 !important;
+    }
+    
+    .progress-container {
+        background: transparent !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .progress-item {
+        background: rgba(0, 0, 0, 0.3) !important;
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    section.dashboard {
+        background: transparent !important;
+        padding: var(--spacing-sm) !important;
+    }
+    
+.progress-item {
+        background: rgba(0, 0, 0, 0.3) !important;
+    }
+}
+
+/* Garantir que nenhum pseudo-elemento tenha fundo */
+.dashboard *::before,
+.dashboard *::after,
+.progress-container *::before,
+.progress-container *::after {
+    background-color: transparent !important;
+}
+
+/* Sobrescrever qualquer style inline que possa existir */
+.dashboard[style],
+.progress-container[style] {
+    background: transparent !important;
+}
+
+/* Forçar removaçnao de qualquer fundo em elementos específicos */
+div.dashboard,
+section.dashboard,
+.dashboard.dashboard,
+.progress-container.progress-container {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Borda superior com cor ajustada para fundo escuro */
+.dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.dashboard:hover::before {
+    transform: scaleX(1);
+}
+
+/* Hover ajustado para fundo escuro */
+.dashboard:hover {
+    transform: translateY(-12px) !important;
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.1) !important;
+    border-color: rgba(102, 126, 234, 0.4) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Título ajustado para fundo escuro */
+.dashboard h2 {
+    /* Cor clara para contraste com fundo escuro */
+    color: #f7fafc !important;
+    font-size: 2.4rem !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    margin-bottom: var(--spacing-2xl) !important;
+    
+    /* Layout centralizado */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--spacing-md) !important;
+    
+    /* Sombra para fundo escuro */
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.8),
+        0 2px 4px rgba(0,0,0,0.6),
+        0 0 20px rgba(255,255,255,0.1) !important;
+    
+    /* Anti-aliasing perfeito */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    
+    /* Contraste ajustado */
+    filter: contrast(1.2) !important;
+    
+    /* Espaçamento de letras */
+    letter-spacing: 0.5px !important;
+    
+    /* Transformação de texto */
+    text-transform: uppercase !important;
+    
+    /* Sem fundo extra - usar só o fundo do dashboard */
+    background: transparent !important;
+    padding: 15px 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    /* Posição relativa para efeitos */
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Ícone ajustado para fundo escuro */
+.dashboard h2 i {
+    font-size: 2.2rem !important;
+    color: #60a5fa !important;
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.6),
+        0 0 15px rgba(96, 165, 250, 0.5) !important;
+    filter: contrast(1.3) drop-shadow(0 2px 4px rgba(0,0,0,0.4)) !important;
+}
+
+/* Efeito brilho ajustado para fundo escuro */
+.dashboard h2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: titleShine 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Responsividade mantendo fundo escuro */
+@media (max-width: 768px) {
+    .dashboard {
+        margin: var(--spacing-md) !important;
+        padding: var(--spacing-lg) !important;
+        border-radius: var(--radius-md) !important;
+        background: rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .dashboard h2 {
+        font-size: 2rem !important;
+        padding: 12px 0 !important;
+        letter-spacing: 0.3px !important;
+        color: #f7fafc !important;
+    }
+    
+    .dashboard h2 i {
+        font-size: 1.8rem !important;
+        color: #60a5fa !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard {
+        margin: var(--spacing-sm) !important;
+        padding: var(--spacing-md) !important;
+        background: rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .dashboard h2 {
+        font-size: 1.7rem !important;
+        padding: 10px 0 !important;
+        letter-spacing: 0.2px !important;
+        gap: var(--spacing-sm) !important;
+        color: #f7fafc !important;
+    }
+    
+    .dashboard h2 i {
+        font-size: 1.6rem !important;
+        color: #60a5fa !important;
+    }
+}
+
+/* Garantir consistência com dark mode */
+@media (prefers-color-scheme: dark) {
+    .dashboard {
+        background: rgba(0, 0, 0, 0.4) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        color: #f7fafc !important;
+    }
+    
+    .dashboard h2 {
+        color: #f7fafc !important;
+        text-shadow: 
+            0 1px 2px rgba(0,0,0,0.8),
+            0 2px 4px rgba(0,0,0,0.6),
+            0 0 20px rgba(255,255,255,0.1) !important;
+    }
+    
+    .dashboard h2 i {
+        color: #60a5fa !important;
+        text-shadow: 0 0 15px rgba(96, 165, 250, 0.5) !important;
+    }
+}
+
+/* Hover suave para fundo escuro */
+.dashboard h2:hover {
+    transform: translateY(-1px) !important;
+    filter: contrast(1.3) brightness(1.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.8),
+        0 2px 4px rgba(0,0,0,0.6),
+        0 0 25px rgba(255,255,255,0.2) !important;
+}
+
+/* Progress items também devem manter fundo escuro para consistência */
+.progress-item {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.progress-item h3 {
+    color: #f7fafc !important;
+}
+
+/* Assegurar que todas as seções tenham o mesmo tema escuro */
+.card {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.card h3 {
+    color: #f7fafc !important;
+}
+
+.water-info {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.water-info h3 {
+    color: #f7fafc !important;
+}
+
+/* Opcões também com fundo escuro */
+.opcao {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.opcao h4 {
+    color: #f7fafc !important;
+}
+
+.opcao li {
+    color: #e2e8f0 !important;
+}
+
+/* ===== GARANTIR PROGRESSO ===== */
+.progress-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+}
+
+.progress-item {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+    padding: var(--spacing-2xl);
+    border-radius: 20px;
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(15px);
+}
+
+/* Cores específicas para cada categoria */
+.progress-item[data-category="geral"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.progress-item[data-category="alimentacao"] {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.progress-item[data-category="hidratacao"] {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+}
+
+.progress-item[data-category="treino"] {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+}
+
+.progress-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    transition: left 0.8s ease;
+}
+
+.progress-item:hover::before {
+    left: 100%;
+}
+
+.progress-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.progress-item h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Ícones específicos para cada categoria */
+.progress-item[data-category="geral"] h3::before {
+    content: '🎯';
+    font-size: 1.5rem;
+}
+
+.progress-item[data-category="alimentacao"] h3::before {
+    content: '🍽️';
+    font-size: 1.5rem;
+}
+
+.progress-item[data-category="hidratacao"] h3::before {
+    content: '💧';
+    font-size: 1.5rem;
+}
+
+.progress-item[data-category="treino"] h3::before {
+    content: '💪';
+    font-size: 1.5rem;
+}
+
+/* Círculo de progresso */
+.progress-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--spacing-lg) auto;
+}
+
+.progress-circle svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-circle-bg {
+    fill: none;
+    stroke: rgba(255,255,255,0.2);
+    stroke-width: 8;
+}
+
+.progress-circle-fill {
+    fill: none;
+    stroke: rgba(255,255,255,0.9);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+}
+
+.progress-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.progress-percentage small {
+    font-size: 0.7em;
+    opacity: 0.8;
+}
+
+/* Barra de progresso linear (fallback) */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: progressShine 2.5s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.progress-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: var(--spacing-md);
+}
+
+.progress-status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+    .dashboard {
+        margin: var(--spacing-md);
+        padding: var(--spacing-xl);
+        border-radius: 16px;
+    }
+    
+    .progress-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .progress-item {
+        padding: var(--spacing-xl);
+    }
+    
+    .progress-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .progress-percentage {
+        font-size: 1.6rem;
+    }
+    
+    .dashboard h2 {
+        font-size: 2rem !important;
+        padding: 12px 24px !important;
+        letter-spacing: 0.3px !important;
+    }
+    
+    .dashboard h2 i {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-circle {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .progress-percentage {
+        font-size: 1.4rem;
+    }
+    
+    .progress-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    .dashboard h2 {
+        font-size: 1.7rem !important;
+        padding: 10px 20px !important;
+        letter-spacing: 0.2px !important;
+        gap: var(--spacing-sm) !important;
+    }
+    
+    .dashboard h2 i {
+        font-size: 1.6rem !important;
+    }
+}
+
+/* Animações de entrada */
+.progress-item {
+    animation: progressSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-item:nth-child(1) { animation-delay: 0.1s; }
+.progress-item:nth-child(2) { animation-delay: 0.2s; }
+.progress-item:nth-child(3) { animation-delay: 0.3s; }
+.progress-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes progressSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Estados especiais */
+.progress-item[data-completed="true"] {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    animation: celebrateComplete 1s ease-in-out;
+}
+
+@keyframes celebrateComplete {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.progress-item[data-completed="true"] .progress-status::before {
+    background: #68d391;
+    animation: successPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 1; 
+        box-shadow: 0 0 0 0 rgba(104, 211, 145, 0.7);
+    }
+    50% { 
+        transform: scale(1.3); 
+        opacity: 0.8; 
+        box-shadow: 0 0 0 10px rgba(104, 211, 145, 0);
+    }
+}
+
+/* ===== CARDS PREMIUM ===== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: rgba(255,255,255,0.95);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    min-height: 450px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-2xl);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.card h3 {
+    color: #2d3748;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.125rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* ===== COMPONENTES DE REFEIÇÃO ===== */
+.meal-content,
+.workout-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    position: relative !important;
+}
+
+.objetivo {
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-style: italic;
+    color: #234e52;
+    border-left: 4px solid #38b2ac;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.objetivo::before {
+    content: '💡';
+    position: absolute;
+    right: var(--spacing-lg);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.opcoes-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: 80px !important;
+}
+
+.opcao {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.opcao:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+    border-color: #cbd5e0;
+}
+
+.opcao h4 {
+    color: #4a5568;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.opcao h4::before {
+    content: '📋';
+    font-size: 1.2rem;
+}
+
+.opcao ul {
+    margin-left: var(--spacing-lg);
+    color: #718096;
+}
+
+.opcao li {
+    margin-bottom: var(--spacing-xs);
+    position: relative;
+    padding-left: var(--spacing-sm);
+}
+
+.opcao li::before {
+    content: '•';
+    color: #38b2ac;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* ===== BOTÕES PREMIUM ===== */
+.btn-container {
+    margin-top: auto !important;
+    padding-top: 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.btn-complete {
+    /* Posicionamento fixo na base do card */
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    
+    /* Dimensões uniformes */
+    height: 50px !important;
+    min-height: 50px !important;
+    width: calc(100% - 40px) !important;
+    
+    /* Centralização perfeita */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    
+    /* Espaçamento interno */
+    padding: 12px 20px !important;
+    
+    /* Tipografia */
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    
+    /* Visual */
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* Glassmorphism */
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    
+    /* Gap para ícones */
+    gap: 8px !important;
+    
+    /* Z-index para ficar acima do conteúdo */
+    z-index: 10 !important;
+}
+
+/* Estados dos botões - mantendo cores diferentes */
+.btn-complete[data-state="0"], /* Não iniciado */
+.btn-not-started {
+    background: linear-gradient(135deg, rgba(108, 117, 125, 0.2) 0%, rgba(73, 80, 87, 0.3) 100%) !important;
+    border: 2px solid rgba(108, 117, 125, 0.4) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.btn-complete[data-state="1"], /* Iniciado */
+.btn-started {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 143, 0, 0.3) 100%) !important;
+    border: 2px solid rgba(255, 193, 7, 0.4) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    animation: breathe 2s ease-in-out infinite !important;
+}
+
+.btn-complete[data-state="2"], /* Concluído */
+.btn-completed {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.2) 0%, rgba(25, 135, 84, 0.3) 100%) !important;
+    border: 2px solid rgba(40, 167, 69, 0.4) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Botões de água - mesma posição */
+.btn-water,
+.btn-reset {
+    /* Mesmas propriedades de posicionamento */
+    height: 50px !important;
+    min-height: 50px !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 10px auto !important;
+    
+    padding: 12px 20px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    gap: 8px !important;
+}
+
+.btn-water {
+    background: linear-gradient(135deg, rgba(13, 202, 240, 0.2) 0%, rgba(0, 123, 255, 0.3) 100%) !important;
+    border: 2px solid rgba(13, 202, 240, 0.4) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.btn-reset {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.2) 0%, rgba(200, 35, 51, 0.3) 100%) !important;
+    border: 2px solid rgba(220, 53, 69, 0.4) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Botão Reset Dia - centralizado */
+.btn-reset-day {
+    height: 50px !important;
+    min-height: 50px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 20px auto !important;
+    
+    padding: 12px 20px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    gap: 8px !important;
+    
+    background: linear-gradient(135deg, rgba(111, 66, 193, 0.2) 0%, rgba(89, 46, 171, 0.3) 100%) !important;
+    border: 2px solid rgba(111, 66, 193, 0.4) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Container de botões de água - centralizado */
+.water-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin: 30px 0 !important;
+}
+
+/* Container de reset - centralizado */
+.reset-day {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 30px 20px !important;
+}
+
+/* Ajuste do conteúdo para não sobrepor botão */
+.opcoes-container {
+    margin-bottom: 80px !important;
+}
+
+.workout-content .video-links {
+    margin-bottom: 80px !important;
+}
+
+/* Efeitos hover uniformes */
+.btn-complete:hover,
+.btn-water:hover,
+.btn-reset:hover,
+.btn-reset-day:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
+}
+
+/* Estados ativos uniformes */
+.btn-complete:active,
+.btn-water:active,
+.btn-reset:active,
+.btn-reset-day:active {
+    transform: translateY(0px) scale(0.98) !important;
+    transition: all 0.1s ease !important;
+}
+
+/* Responsividade - manter padrão em mobile */
+@media (max-width: 768px) {
+    .card {
+        min-height: 420px !important;
+    }
+    
+    .btn-complete,
+    .btn-water,
+    .btn-reset,
+    .btn-reset-day {
+        height: 48px !important;
+        min-height: 48px !important;
+        font-size: 0.95rem !important;
+        padding: 10px 16px !important;
+    }
+    
+    .btn-complete {
+        bottom: 15px !important;
+        left: 15px !important;
+        right: 15px !important;
+        width: calc(100% - 30px) !important;
+    }
+    
+    .opcoes-container {
+        margin-bottom: 70px !important;
+    }
+    
+    .workout-content .video-links {
+        margin-bottom: 70px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        min-height: 400px !important;
+    }
+    
+    .btn-complete,
+    .btn-water,
+    .btn-reset,
+    .btn-reset-day {
+        height: 46px !important;
+        min-height: 46px !important;
+        font-size: 0.9rem !important;
+        padding: 8px 14px !important;
+    }
+    
+    .btn-complete {
+        bottom: 12px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: calc(100% - 24px) !important;
+    }
+}
+
+/* Animações especiais para estados */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Ícones dos estados */
+.btn-complete[data-state="1"]::after {
+    content: '⚡';
+    position: absolute;
+    right: 12px;
+    font-size: 1.2em;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+.btn-complete[data-state="2"]::after {
+    content: '✅';
+    position: absolute;
+    right: 12px;
+    font-size: 1.2em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ===== HIDRATAÇÃO PREMIUM ===== */
+.hidratacao {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 197, 253, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-lg);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.water-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.water-info {
+    text-align: center;
+    background: rgba(255,255,255,0.9);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 500px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.water-info h3 {
+    color: #1e40af;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.water-tips {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+    border: 1px solid #93c5fd;
+}
+
+.water-tips p {
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: #1e40af;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.water-tips p::before {
+    content: '💧';
+    font-size: 1.2rem;
+}
+
+.water-tips ul {
+    margin-left: var(--spacing-lg);
+    color: #3730a3;
+}
+
+.water-tips li {
+    margin-bottom: var(--spacing-xs);
+    position: relative;
+}
+
+.water-counter {
+    font-size: 2.5rem;
+    color: #1e40af;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.water-counter small {
+    display: block;
+    font-size: 1.1rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: var(--spacing-sm);
+}
+
+/* ===== BOTÕES DE ÁGUA ===== */
+.water-buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-water {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-water:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-reset {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-reset:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* ===== COPOS DE ÁGUA PREMIUM ===== */
+.water-visual {
+    width: 100%;
+    max-width: 600px;
+}
+
+.water-glasses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(5px);
+}
+
+.water-glass {
+    width: 45px;
+    height: 55px;
+    border: 3px solid #3b82f6;
+    border-radius: 6px 6px 18px 18px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255,255,255,0.9);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.water-glass::before {
+    content: attr(title);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #64748b;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.water-glass:hover::before {
+    opacity: 1;
+}
+
+.water-glass:hover {
+    transform: scale(1.1) translateY(-2px);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #60a5fa 100%);
+    border-color: #1d4ed8;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.water-glass.filled::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0.3) 0%, 
+        rgba(255,255,255,0.1) 50%, 
+        rgba(255,255,255,0.3) 100%);
+    border-radius: 50%;
+    animation: waterRipple 2s ease-in-out infinite;
+}
+
+@keyframes waterRipple {
+    0%, 100% { transform: scaleX(1); opacity: 0.3; }
+    50% { transform: scaleX(1.2); opacity: 0.1; }
+}
+
+/* ===== LINKS DE VÍDEO PREMIUM ===== */
+.video-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.video-link {
+    color: #dc2626;
+    text-decoration: none;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-radius: var(--radius-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    border: 1px solid #fecaca;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.video-link:hover::before {
+    left: 100%;
+}
+
+.video-link:hover {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    transform: translateX(8px);
+    box-shadow: var(--shadow-lg);
+    border-color: #f87171;
+}
+
+.video-link i {
+    font-size: 1.3rem;
+    color: #dc2626;
+}
+
+/* ===== BOTÃO RESET PREMIUM ===== */
+.reset-day {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(220, 38, 38, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-lg);
+    border: 1px solid rgba(239, 68, 68, 0.1);
+}
+
+.btn-reset-day {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-reset-day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-reset-day:hover::before {
+    left: 100%;
+}
+
+.btn-reset-day:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-2xl);
+}
+
+/* ===== WORKOUT CONTENT ===== */
+.workout-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* ===== RESPONSIVIDADE PREMIUM ===== */
+@media (max-width: 768px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+    
+    header {
+        padding: var(--spacing-xl);
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    section {
+        padding: var(--spacing-xl);
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .progress-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .water-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .btn-water, .btn-reset {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .water-glasses {
+        gap: var(--spacing-sm);
+    }
+    
+    .water-glass {
+        width: 35px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .workout-time {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .water-counter {
+        font-size: 2rem;
+    }
+    
+    .btn-complete, .btn-water, .btn-reset {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1rem;
+    }
+    
+    .card {
+        padding: var(--spacing-lg);
+    }
+    
+    .progress-item {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* ===== ANIMAÇÕES AVANÇADAS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+
+.progress-item {
+    animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-item:nth-child(1) { animation-delay: 0.1s; }
+.progress-item:nth-child(2) { animation-delay: 0.2s; }
+.progress-item:nth-child(3) { animation-delay: 0.3s; }
+.progress-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* ===== EFEITOS ESPECIAIS ===== */
+.achievement {
+    animation: achievementPulse 1.5s ease-in-out;
+}
+
+@keyframes achievementPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); box-shadow: var(--shadow-2xl); }
+    100% { transform: scale(1); }
+}
+
+/* ===== SCROLLBAR PERSONALIZADA ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gradient);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-gradient);
+}
+
+/* ===== LOADING STATES ===== */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ===== OTIMIZAÇÕES ESPECÍFICAS PARA MOBILE ===== */
+
+/* Viewport meta para garantir responsividade */
+@-ms-viewport { width: device-width; }
+
+/* Melhorias de performance para mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Permitir seleção de texto onde necessário */
+.objetivo, .opcao li, .water-tips li {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Otimizações para toque */
+button, .btn-complete, .btn-water, .btn-reset, .btn-reset-day, .water-glass, .video-link {
+    -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    touch-action: manipulation;
+    min-height: 44px; /* Tamanho mínimo recomendado para toque */
+    min-width: 44px;
+}
+
+/* Scroll suave em dispositivos móveis */
+html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Reduzir animações em dispositivos com pouca bateria */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Melhorias específicas para mobile portrait */
+@media (max-width: 768px) and (orientation: portrait) {
+    body {
+        padding: var(--spacing-xs);
+    }
+    
+    .container {
+        border-radius: var(--radius-md);
+        margin: 0;
+    }
+    
+    header {
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .date {
+        font-size: 1rem;
+    }
+    
+    .workout-time {
+        font-size: 0.9rem;
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+    
+    section {
+        padding: var(--spacing-lg);
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .dashboard {
+        margin: var(--spacing-sm);
+        padding: var(--spacing-lg);
+    }
+    
+    .progress-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .progress-item {
+        padding: var(--spacing-lg);
+    }
+    
+    .progress-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    .progress-item span {
+        font-size: 1.3rem;
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .card {
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .objetivo {
+        padding: var(--spacing-md);
+        font-size: 0.95rem;
+    }
+    
+    .opcao {
+        padding: var(--spacing-md);
+    }
+    
+    .opcao h4 {
+        font-size: 1rem;
+    }
+    
+    .opcao li {
+        font-size: 0.9rem;
+    }
+    
+    .btn-complete {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1rem;
+        margin-top: var(--spacing-md);
+    }
+    
+    .hidratacao {
+        margin: var(--spacing-sm);
+    }
+    
+    .water-info {
+        padding: var(--spacing-lg);
+    }
+    
+    .water-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .water-counter {
+        font-size: 2rem;
+    }
+    
+    .water-buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: stretch;
+    }
+    
+    .btn-water, .btn-reset {
+        width: 100%;
+        padding: var(--spacing-lg);
+        font-size: 1.1rem;
+    }
+    
+    .water-glasses {
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+    }
+    
+    .water-glass {
+        width: 38px;
+        height: 48px;
+        border-width: 2px;
+    }
+    
+    .video-links {
+        gap: var(--spacing-sm);
+    }
+    
+    .video-link {
+        padding: var(--spacing-md);
+        font-size: 0.95rem;
+    }
+    
+    .reset-day {
+        margin: var(--spacing-sm);
+        padding: var(--spacing-lg);
+    }
+    
+    .btn-reset-day {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1.1rem;
+    }
+}
+
+/* Melhorias para telas muito pequenas */
+@media (max-width: 375px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .progress-item {
+        padding: var(--spacing-md);
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+    
+    .water-glass {
+        width: 32px;
+        height: 42px;
+    }
+    
+    .btn-complete, .btn-water, .btn-reset {
+        font-size: 0.95rem;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}
+
+/* Otimizações para iPhone SE e similares */
+@media (max-width: 320px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .date {
+        font-size: 0.9rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .water-counter {
+        font-size: 1.8rem;
+    }
+    
+    .water-glass {
+        width: 28px;
+        height: 38px;
+    }
+}
+
+/* Melhorias para landscape em mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: var(--spacing-sm);
+    }
+    
+    header {
+        padding: var(--spacing-md);
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    section {
+        padding: var(--spacing-md);
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .progress-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Suporte para PWA e full-screen */
+@media all and (display-mode: fullscreen) {
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+/* Dark mode automático baseado na preferência do sistema */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --glass-bg: rgba(0, 0, 0, 0.4);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    
+    body {
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    }
+    
+    .card, .progress-item, .water-info {
+        background: rgba(0, 0, 0, 0.3);
+        color: #f7fafc;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .opcao {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    h2, .card h3, .progress-item h3 {
+        color: #f7fafc;
+    }
+}
+
+/* Otimizações para dispositivos com alta densidade de pixels */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .container {
+        border-width: 0.5px;
+    }
+    
+    .progress-bar {
+        border: 0.5px solid rgba(0,0,0,0.1);
+    }
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-contrast: high) {
+    .btn-complete, .btn-water, .btn-reset, .btn-reset-day {
+        border: 2px solid rgba(255,255,255,0.8);
+    }
+    
+    .card, .progress-item {
+        border-width: 2px;
+        border-color: rgba(0,0,0,0.3);
+    }
+}
+
+/* EXECUTANDO MELHORIAS ESPECÍFICAS CONVERSADAS */
+
+/* Centralização de textos em cards */
+.card h3, .progress-item h3 {
+    text-align: center;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+}
+
+.card h3 {
+    font-size: 1.125rem; /* 18px */
+}
+
+/* Espaçamento consistente entre cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Sombras mais suaves */
+.card, .progress-item, .water-info {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* Border-radius padronizado */
+}
+
+/* Border-radius padronizado */
+.opcao, .objetivo, .water-tips, .video-link {
+    border-radius: 12px;
+}
+
+.btn-complete, .btn-water, .btn-reset, .btn-reset-day {
+    border-radius: 12px;
+}
+
+/* Paleta de cores consistente */
+:root {
+    --primary-blue: #3b82f6;
+    --primary-purple: #667eea;
+    --success-green: #10b981;
+    --warning-orange: #f59e0b;
+    --danger-red: #ef4444;
+    --neutral-gray: #6b7280;
+}
+
+/* Layout adaptativo com grid */
+.progress-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Unidades relativas */
+.water-counter {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+.date {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+/* Ícones para temas de cards */
+.card h3::before {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+}
+
+/* Feedback tátil melhorado */
+.btn-complete:active, .btn-water:active, .btn-reset:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Touch targets maiores para mobile */
+@media (max-width: 768px) {
+    .btn-complete, .btn-water, .btn-reset, .water-glass {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* ===== SEÇÃO DE BOAS-VINDAS PERSONALIZADA ===== */
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.welcome-message {
+    margin-top: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.greeting {
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    animation: welcomePulse 2s ease-in-out infinite;
+}
+
+.motivation {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    line-height: 1.5;
+    margin: 12px 0 0 0;
+    font-style: italic;
+    letter-spacing: 0.3px;
+}
+
+/* Animação da saudação */
+@keyframes welcomePulse {
+    0%, 100% { 
+        transform: scale(1);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        text-shadow: 0 4px 8px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.3);
+    }
+}
+
+/* Efeito especial para destacar a mensagem motivacional */
+.motivation::before {
+    content: '✨';
+    margin-right: 8px;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.motivation::after {
+    content: '✨';
+    margin-left: 8px;
+    animation: sparkle 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Animação de entrada suave */
+@keyframes titleFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.dashboard h2 {
+    animation: titleFadeIn 0.6s ease-out !important;
+}
+
+/* ===== MELHORIAS DE NITIDEZ PARA "PROGRESSO DO DIA" ===== */
+
+.dashboard h2 {
+    /* Nitidez máxima do texto */
+    color: #1a202c !important;
+    font-size: 2.4rem !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    margin-bottom: var(--spacing-2xl) !important;
+    
+    /* Layout centralizado */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--spacing-md) !important;
+    
+    /* Sombra múltipla para máxima nitidez e contraste */
+    text-shadow: 
+        0 1px 1px rgba(255,255,255,0.8),
+        0 2px 4px rgba(0,0,0,0.25),
+        0 4px 8px rgba(0,0,0,0.15) !important;
+    
+    /* Anti-aliasing perfeito */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    
+    /* Melhor contraste */
+    filter: contrast(1.2) !important;
+    
+    /* Espaçamento de letras para clareza */
+    letter-spacing: 0.5px !important;
+    
+    /* Transformação de texto */
+    text-transform: uppercase !important;
+    
+    /* Fundo semi-transparente para contraste */
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%) !important;
+    padding: 15px 30px !important;
+    border-radius: 16px !important;
+    border: 2px solid rgba(26, 32, 44, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8) !important;
+    
+    /* Efeito de brilho sutil */
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Efeito de brilho animado para destaque */
+.dashboard h2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: titleShine 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes titleShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: -100%; }
+}
+
+/* Ícone com melhor nitidez */
+.dashboard h2 i {
+    font-size: 2.2rem !important;
+    color: #4285f4 !important;
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.2),
+        0 0 10px rgba(66, 133, 244, 0.3) !important;
+    filter: contrast(1.3) drop-shadow(0 2px 4px rgba(0,0,0,0.2)) !important;
+}
+
+/* Dashboard com fundo mais contrastante */
+.dashboard {
+    background: linear-gradient(135deg, 
+        rgba(255,255,255,0.95) 0%, 
+        rgba(248,250,252,0.9) 50%,
+        rgba(255,255,255,0.95) 100%) !important;
+    border-radius: 24px !important;
+    margin: var(--spacing-xl) !important;
+    padding: var(--spacing-2xl) !important;
+    border: 2px solid rgba(255,255,255,0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 0 0 1px rgba(255,255,255,0.05) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Responsividade mantendo nitidez */
+@media (max-width: 768px) {
+    .dashboard h2 {
+        font-size: 2rem !important;
+        padding: 12px 24px !important;
+        letter-spacing: 0.3px !important;
+    }
+    
+    .dashboard h2 i {
+        font-size: 1.8rem !important;
+    }
+    
+    .dashboard {
+        margin: var(--spacing-md) !important;
+        padding: var(--spacing-xl) !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard h2 {
+        font-size: 1.7rem !important;
+        padding: 10px 20px !important;
+        letter-spacing: 0.2px !important;
+        gap: var(--spacing-sm) !important;
+    }
+    
+    .dashboard h2 i {
+        font-size: 1.6rem !important;
+    }
+}
+
+/* Melhorar nitidez em telas de alta resolução */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .dashboard h2 {
+        text-shadow: 
+            0 0.5px 1px rgba(255,255,255,0.9),
+            0 1px 2px rgba(0,0,0,0.3),
+            0 2px 4px rgba(0,0,0,0.2) !important;
+        filter: contrast(1.3) !important;
+    }
+}
+
+/* Garantir máximo contraste */
+@media (prefers-contrast: high) {
+    .dashboard h2 {
+        color: #000000 !important;
+        background: rgba(255,255,255,0.98) !important;
+        border: 3px solid #000000 !important;
+        text-shadow: none !important;
+        font-weight: 1000 !important;
+    }
+    
+    .dashboard h2 i {
+        color: #000000 !important;
+        text-shadow: none !important;
+    }
+}
+
+/* Suporte para Dark Mode mantendo nitidez */
+@media (prefers-color-scheme: dark) {
+    .dashboard h2 {
+        color: #ffffff !important;
+        background: linear-gradient(135deg, rgba(26, 32, 44, 0.9) 0%, rgba(45, 55, 72, 0.8) 100%) !important;
+        border: 2px solid rgba(255,255,255,0.2) !important;
+        text-shadow: 
+            0 1px 2px rgba(0,0,0,0.8),
+            0 2px 4px rgba(0,0,0,0.6),
+            0 0 20px rgba(255,255,255,0.1) !important;
+    }
+    
+    .dashboard h2 i {
+        color: #60a5fa !important;
+        text-shadow: 0 0 15px rgba(96, 165, 250, 0.5) !important;
+    }
+}
+
+/* Efeito hover para interatividade */
+.dashboard h2:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 12px 30px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.9) !important;
+    filter: contrast(1.3) brightness(1.05) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+} 
+
+/* ===== LINKS DE VÍDEO COM FUNDO ESCURO IGUAL AOS OUTROS ===== */
+
+.video-link {
+    /* MESMO fundo escuro dos outros elementos */
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    
+    /* Manter outras propriedades */
+    text-decoration: none !important;
+    padding: var(--spacing-lg) !important;
+    border-radius: var(--radius-md) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--spacing-md) !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Efeito brilho ajustado para fundo escuro */
+.video-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.video-link:hover::before {
+    left: 100%;
+}
+
+/* Hover com fundo mais escuro */
+.video-link:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #ffffff !important;
+    transform: translateX(8px) !important;
+    box-shadow: var(--shadow-lg) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Ícones com cor clara */
+.video-link i {
+    font-size: 1.3rem !important;
+    color: #60a5fa !important;
+}
+
+.video-link:hover i {
+    color: #93c5fd !important;
+}
+
+/* Container de vídeos */
+.video-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: 80px !important; /* Espaço para o botão fixo */
+}
+
+/* Garantir que o workout-content mantenha o padrão */
+.workout-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    position: relative !important;
+    color: #f7fafc !important;
+}
+
+/* Reset day também com fundo escuro */
+.reset-day {
+    text-align: center !important;
+    padding: var(--spacing-lg) !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: var(--radius-lg) !important;
+    margin: var(--spacing-lg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Responsividade mantendo fundo escuro */
+@media (max-width: 768px) {
+    .video-link {
+        background: rgba(0, 0, 0, 0.2) !important;
+        color: #f7fafc !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: var(--spacing-md) !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .video-link:hover {
+        background: rgba(0, 0, 0, 0.3) !important;
+        color: #ffffff !important;
+    }
+    
+    .video-link i {
+        color: #60a5fa !important;
+        font-size: 1.2rem !important;
+    }
+    
+    .video-links {
+        margin-bottom: 70px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-link {
+        background: rgba(0, 0, 0, 0.2) !important;
+        color: #f7fafc !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: var(--spacing-sm) var(--spacing-md) !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .video-link:hover {
+        background: rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .video-link i {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* Dark mode - manter consistência */
+@media (prefers-color-scheme: dark) {
+    .video-link {
+        background: rgba(0, 0, 0, 0.2) !important;
+        color: #f7fafc !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .video-link:hover {
+        background: rgba(0, 0, 0, 0.3) !important;
+        color: #ffffff !important;
+    }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+    .video-link {
+        background: rgba(0, 0, 0, 0.4) !important;
+        color: #ffffff !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    }
+}
+
+/* Garantir que textos dentro dos video-links sejam claros */
+.video-link * {
+    color: inherit !important;
+}
+
+/* Forçar override de qualquer estilo anterior */
+.video-links .video-link {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.video-links .video-link:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Garantir consistência total */
+a.video-link {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: #f7fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+a.video-link:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #ffffff !important;
+}
+
+/* ===== SISTEMA DE CORES GRADATIVAS PARA CÍRCULOS DE PROGRESSO ===== */
+
+/* Cores base para diferentes porcentagens */
+.progress-circle-fill {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 251.33; /* 2 * π * 40 */
+    stroke-dashoffset: 251.33;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.3));
+}
+
+/* Cores graduais baseadas no data-progress */
+/* 0-10%: Vermelho escuro */
+.progress-circle-fill[data-progress="0"],
+.progress-circle-fill[data-progress="1"],
+.progress-circle-fill[data-progress="2"],
+.progress-circle-fill[data-progress="3"],
+.progress-circle-fill[data-progress="4"],
+.progress-circle-fill[data-progress="5"],
+.progress-circle-fill[data-progress="6"],
+.progress-circle-fill[data-progress="7"],
+.progress-circle-fill[data-progress="8"],
+.progress-circle-fill[data-progress="9"],
+.progress-circle-fill[data-progress="10"] {
+    stroke: #dc3545;
+    filter: drop-shadow(0 0 12px rgba(220, 53, 69, 0.4));
+}
+
+/* 11-25%: Laranja-avermelhado */
+.progress-circle-fill[data-progress="11"],
+.progress-circle-fill[data-progress="12"],
+.progress-circle-fill[data-progress="13"],
+.progress-circle-fill[data-progress="14"],
+.progress-circle-fill[data-progress="15"],
+.progress-circle-fill[data-progress="16"],
+.progress-circle-fill[data-progress="17"],
+.progress-circle-fill[data-progress="18"],
+.progress-circle-fill[data-progress="19"],
+.progress-circle-fill[data-progress="20"],
+.progress-circle-fill[data-progress="21"],
+.progress-circle-fill[data-progress="22"],
+.progress-circle-fill[data-progress="23"],
+.progress-circle-fill[data-progress="24"],
+.progress-circle-fill[data-progress="25"] {
+    stroke: #fd7e14;
+    filter: drop-shadow(0 0 12px rgba(253, 126, 20, 0.4));
+}
+
+/* 26-50%: Amarelo-laranja */
+.progress-circle-fill[data-progress="26"],
+.progress-circle-fill[data-progress="27"],
+.progress-circle-fill[data-progress="28"],
+.progress-circle-fill[data-progress="29"],
+.progress-circle-fill[data-progress="30"],
+.progress-circle-fill[data-progress="31"],
+.progress-circle-fill[data-progress="32"],
+.progress-circle-fill[data-progress="33"],
+.progress-circle-fill[data-progress="34"],
+.progress-circle-fill[data-progress="35"],
+.progress-circle-fill[data-progress="36"],
+.progress-circle-fill[data-progress="37"],
+.progress-circle-fill[data-progress="38"],
+.progress-circle-fill[data-progress="39"],
+.progress-circle-fill[data-progress="40"],
+.progress-circle-fill[data-progress="41"],
+.progress-circle-fill[data-progress="42"],
+.progress-circle-fill[data-progress="43"],
+.progress-circle-fill[data-progress="44"],
+.progress-circle-fill[data-progress="45"],
+.progress-circle-fill[data-progress="46"],
+.progress-circle-fill[data-progress="47"],
+.progress-circle-fill[data-progress="48"],
+.progress-circle-fill[data-progress="49"],
+.progress-circle-fill[data-progress="50"] {
+    stroke: #ffc107;
+    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.4));
+}
+
+/* 51-75%: Amarelo-verde */
+.progress-circle-fill[data-progress="51"],
+.progress-circle-fill[data-progress="52"],
+.progress-circle-fill[data-progress="53"],
+.progress-circle-fill[data-progress="54"],
+.progress-circle-fill[data-progress="55"],
+.progress-circle-fill[data-progress="56"],
+.progress-circle-fill[data-progress="57"],
+.progress-circle-fill[data-progress="58"],
+.progress-circle-fill[data-progress="59"],
+.progress-circle-fill[data-progress="60"],
+.progress-circle-fill[data-progress="61"],
+.progress-circle-fill[data-progress="62"],
+.progress-circle-fill[data-progress="63"],
+.progress-circle-fill[data-progress="64"],
+.progress-circle-fill[data-progress="65"],
+.progress-circle-fill[data-progress="66"],
+.progress-circle-fill[data-progress="67"],
+.progress-circle-fill[data-progress="68"],
+.progress-circle-fill[data-progress="69"],
+.progress-circle-fill[data-progress="70"],
+.progress-circle-fill[data-progress="71"],
+.progress-circle-fill[data-progress="72"],
+.progress-circle-fill[data-progress="73"],
+.progress-circle-fill[data-progress="74"],
+.progress-circle-fill[data-progress="75"] {
+    stroke: #20c997;
+    filter: drop-shadow(0 0 12px rgba(32, 201, 151, 0.4));
+}
+
+/* 76-90%: Verde claro */
+.progress-circle-fill[data-progress="76"],
+.progress-circle-fill[data-progress="77"],
+.progress-circle-fill[data-progress="78"],
+.progress-circle-fill[data-progress="79"],
+.progress-circle-fill[data-progress="80"],
+.progress-circle-fill[data-progress="81"],
+.progress-circle-fill[data-progress="82"],
+.progress-circle-fill[data-progress="83"],
+.progress-circle-fill[data-progress="84"],
+.progress-circle-fill[data-progress="85"],
+.progress-circle-fill[data-progress="86"],
+.progress-circle-fill[data-progress="87"],
+.progress-circle-fill[data-progress="88"],
+.progress-circle-fill[data-progress="89"],
+.progress-circle-fill[data-progress="90"] {
+    stroke: #28a745;
+    filter: drop-shadow(0 0 12px rgba(40, 167, 69, 0.4));
+}
+
+/* 91-99%: Verde intenso */
+.progress-circle-fill[data-progress="91"],
+.progress-circle-fill[data-progress="92"],
+.progress-circle-fill[data-progress="93"],
+.progress-circle-fill[data-progress="94"],
+.progress-circle-fill[data-progress="95"],
+.progress-circle-fill[data-progress="96"],
+.progress-circle-fill[data-progress="97"],
+.progress-circle-fill[data-progress="98"],
+.progress-circle-fill[data-progress="99"] {
+    stroke: #155724;
+    filter: drop-shadow(0 0 15px rgba(21, 87, 36, 0.6));
+}
+
+/* 100%: Verde com efeito especial */
+.progress-circle-fill[data-progress="100"] {
+    stroke: #28a745;
+    filter: drop-shadow(0 0 20px rgba(40, 167, 69, 0.8));
+    animation: greenPulse 2s ease-in-out infinite;
+}
+
+/* Animação especial para 100% - Verde */
+@keyframes greenPulse {
+    0%, 100% {
+        stroke: #28a745;
+        filter: drop-shadow(0 0 20px rgba(40, 167, 69, 0.8));
+    }
+    50% {
+        stroke: #34ce57;
+        filter: drop-shadow(0 0 30px rgba(52, 206, 87, 1));
+    }
+}
+
+/* Cores do texto baseadas no progresso - Verde para 100% */
+.progress-percentage[data-progress="100"] {
+    color: #28a745 !important;
+    text-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
+    animation: greenTextPulse 2s ease-in-out infinite;
+}
+
+@keyframes greenTextPulse {
+    0%, 100% {
+        color: #28a745;
+        text-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
+    }
+    50% {
+        color: #34ce57;
+        text-shadow: 0 0 20px rgba(52, 206, 87, 1);
+    }
+}
+
+/* Troféu na parte superior do círculo */
+.progress-item[data-progress="100"] .progress-circle::before {
+    content: "🏆";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: trophyBounce 1.5s ease-in-out infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Garantir que o progress-circle tenha posição relativa */
+.progress-item[data-progress="100"] .progress-circle {
+    position: relative;
+}
+
+@keyframes trophyBounce {
+    0%, 20%, 60%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+    80% {
+        transform: translateX(-50%) translateY(-2px);
+    }
+}
+
+/* Efeito de brilho para altas porcentagens */
+.progress-circle-fill[data-progress="90"],
+.progress-circle-fill[data-progress="91"],
+.progress-circle-fill[data-progress="92"],
+.progress-circle-fill[data-progress="93"],
+.progress-circle-fill[data-progress="94"],
+.progress-circle-fill[data-progress="95"],
+.progress-circle-fill[data-progress="96"],
+.progress-circle-fill[data-progress="97"],
+.progress-circle-fill[data-progress="98"],
+.progress-circle-fill[data-progress="99"],
+.progress-circle-fill[data-progress="100"] {
+    animation: highProgressGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes highProgressGlow {
+    0% {
+        filter: drop-shadow(0 0 15px rgba(21, 87, 36, 0.6));
+    }
+    100% {
+        filter: drop-shadow(0 0 25px rgba(21, 87, 36, 1));
+    }
+}
+
+/* Cores dos ícones baseadas no progresso */
+.progress-item h3 i {
+    transition: all 0.3s ease;
+}
+
+.progress-item[data-progress="100"] h3 i {
+    color: #28a745 !important;
+    text-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
+}
+
+.progress-item[data-progress="90"],
+.progress-item[data-progress="91"],
+.progress-item[data-progress="92"],
+.progress-item[data-progress="93"],
+.progress-item[data-progress="94"],
+.progress-item[data-progress="95"],
+.progress-item[data-progress="96"],
+.progress-item[data-progress="97"],
+.progress-item[data-progress="98"],
+.progress-item[data-progress="99"] {
+    h3 i {
+        color: #28a745 !important;
+    }
+}

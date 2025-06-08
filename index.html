@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Alimentação & Treino">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="msapplication-TileImage" content="icon-144x144.svg">
+    
+    <!-- Android Chrome Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Alimentação & Treino">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicons para diferentes dispositivos -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="72x72" href="icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="icon-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
+    
+    <title>Meu App de Alimentação e Treino</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="welcome-section">
+                <h1><i class="fas fa-dumbbell"></i> Meu Controle de Alimentação e Treino</h1>
+                <div class="welcome-message">
+                    <span class="greeting">🎉 Bem-vindo, Edinaldo!</span>
+                    <p class="motivation">💪 "Cada pequeno passo hoje é um grande progresso amanhã. Vamos conquistar seus objetivos juntos!"</p>
+                </div>
+            </div>
+            <div class="date" id="currentDate"></div>
+            <div class="workout-time">🕐 Treino: 16h00 - 17h30</div>
+        </header>
+
+        <!-- Dashboard de Progresso Melhorado -->
+        <section class="dashboard">
+            <h2><i class="fas fa-chart-line"></i> Progresso do Dia</h2>
+            <div class="progress-container">
+                <!-- Progresso Geral -->
+                <div class="progress-item" data-category="geral">
+                    <h3>Geral</h3>
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress-circle-fill" cx="50" cy="50" r="40" id="geralCircle"></circle>
+                        </svg>
+                        <div class="progress-percentage">
+                            <span id="geralText">0</span><small>%</small>
+                        </div>
+                    </div>
+                    <div class="progress-status" id="geralStatus">
+                        Iniciando o dia...
+                    </div>
+                </div>
+
+                <!-- Progresso Alimentação -->
+                <div class="progress-item" data-category="alimentacao">
+                    <h3>Alimentação</h3>
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress-circle-fill" cx="50" cy="50" r="40" id="alimentacaoCircle"></circle>
+                        </svg>
+                        <div class="progress-percentage">
+                            <span id="alimentacaoText">0</span><small>%</small>
+                        </div>
+                    </div>
+                    <div class="progress-status" id="alimentacaoStatus">
+                        0/7 refeições
+                    </div>
+                </div>
+
+                <!-- Progresso Hidratação -->
+                <div class="progress-item" data-category="hidratacao">
+                    <h3>Hidratação</h3>
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress-circle-fill" cx="50" cy="50" r="40" id="hidratacaoCircle"></circle>
+                        </svg>
+                        <div class="progress-percentage">
+                            <span id="hidratacaoText">0</span><small>%</small>
+                        </div>
+                    </div>
+                    <div class="progress-status" id="hidratacaoStatus">
+                        0/10 copos
+                    </div>
+                </div>
+
+                <!-- Progresso Treino -->
+                <div class="progress-item" data-category="treino">
+                    <h3>Treino</h3>
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress-circle-fill" cx="50" cy="50" r="40" id="treinoCircle"></circle>
+                        </svg>
+                        <div class="progress-percentage">
+                            <span id="treinoText">0</span><small>%</small>
+                        </div>
+                    </div>
+                    <div class="progress-status" id="treinoStatus">
+                        0/4 treinos
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Alimentação -->
+        <section class="alimentacao">
+            <h2><i class="fas fa-utensils"></i> Plano Alimentar</h2>
+            <div class="cards-container">
+                <!-- Café da Manhã -->
+                <div class="card">
+                    <h3>☀️ Café da Manhã - 8h</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Fornecer energia e proteína para iniciar o dia</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Opção 1:</h4>
+                                <ul>
+                                    <li>3 ovos inteiros (150g)</li>
+                                    <li>1 fatia de pão integral (30g)</li>
+                                    <li>1 banana prata média (100g)</li>
+                                    <li>1 colher de sopa de pasta de amendoim (15g)</li>
+                                    <li>1 xícara (200 ml) de café preto sem açúcar</li>
+                                </ul>
+                            </div>
+                            <div class="opcao">
+                                <h4>Opção 2:</h4>
+                                <ul>
+                                    <li>50g de aveia</li>
+                                    <li>200 ml de leite desnatado</li>
+                                    <li>1 banana amassada (100g)</li>
+                                    <li>1 colher de chá de canela</li>
+                                    <li>1 colher de sopa de mel (15g)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="cafe-manha">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lanche da Manhã -->
+                <div class="card">
+                    <h3>🍎 Lanche da Manhã - 11h</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Evitar catabolismo e manter o metabolismo ativo</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Opção 1:</h4>
+                                <ul>
+                                    <li>170g de iogurte natural integral</li>
+                                    <li>1 colher de sopa de mel (15g)</li>
+                                    <li>1 colher de sopa de chia ou linhaça (10g)</li>
+                                </ul>
+                            </div>
+                            <div class="opcao">
+                                <h4>Opção 2:</h4>
+                                <ul>
+                                    <li>1 maçã média (130g)</li>
+                                    <li>10 castanhas de caju ou 6 nozes (20g)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="lanche-manha">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Almoço -->
+                <div class="card">
+                    <h3>🍽️ Almoço - 13h</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Refeição principal com equilíbrio entre carboidrato, proteína e gordura boa</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Base:</h4>
+                                <ul>
+                                    <li>120g de arroz integral ou 200g de batata-doce cozida</li>
+                                    <li>120g de frango grelhado ou carne vermelha magra</li>
+                                    <li>1 colher de sopa de azeite extravirgem (10g)</li>
+                                </ul>
+                                <h4>Legumes Refogados (escolha):</h4>
+                                <ul>
+                                    <li>Cenoura, Abobrinha, Vagem, Chuchu, Brócolis, Couve-flor</li>
+                                </ul>
+                                <h4>Salada Crua:</h4>
+                                <ul>
+                                    <li>Alface, Rúcula, Tomate, Pepino, Cenoura ralada, Beterraba crua ralada</li>
+                                </ul>
+                                <h4>Tempero Sugerido:</h4>
+                                <ul>
+                                    <li>1 colher de sopa de azeite de oliva (10g)</li>
+                                    <li>Suco de 1/2 limão ou 1 colher de sopa de vinagre de maçã</li>
+                                    <li>Pitada de sal, alho picado, orégano, pimenta-do-reino, salsinha, cúrcuma</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="almoco">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pré-Treino -->
+                <div class="card">
+                    <h3>💪 Pré-Treino - 15h30</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Garantir energia e disponibilidade de aminoácidos para o treino</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Opção 1 (rápido):</h4>
+                                <ul>
+                                    <li>1 banana média (100g)</li>
+                                    <li>1 colher de sopa de aveia (15g)</li>
+                                    <li>1 dose de whey protein (30g) + 200 ml de água</li>
+                                </ul>
+                            </div>
+                            <div class="opcao">
+                                <h4>Opção 2 (natural):</h4>
+                                <ul>
+                                    <li>3 claras + 1 gema (120g total) cozidas</li>
+                                    <li>1 fatia de pão integral (30g)</li>
+                                    <li>1 colher de pasta de amendoim (15g)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="pre-treino">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pós-Treino -->
+                <div class="card">
+                    <h3>🏃‍♂️ Pós-Treino - 17h30</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Reposição rápida de proteína e carboidrato</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Opção 1 (shake):</h4>
+                                <ul>
+                                    <li>1 banana média (100g)</li>
+                                    <li>1 dose de whey protein (30g)</li>
+                                    <li>300 ml de leite desnatado ou água</li>
+                                    <li>1 colher de sopa de aveia (15g)</li>
+                                </ul>
+                            </div>
+                            <div class="opcao">
+                                <h4>Opção 2 (comida):</h4>
+                                <ul>
+                                    <li>2 ovos inteiros + 2 claras (150g)</li>
+                                    <li>2 fatias de pão integral OU 120g de batata-doce</li>
+                                    <li>1 copo de suco natural sem açúcar (200 ml)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="pos-treino">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jantar -->
+                <div class="card">
+                    <h3>🌙 Jantar - 20h</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Repor nutrientes sem pesar o sistema digestivo à noite</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Opção 1:</h4>
+                                <ul>
+                                    <li>100g de arroz integral</li>
+                                    <li>100g de frango ou peixe grelhado</li>
+                                    <li>1 porção de legumes refogados (100g)</li>
+                                    <li>Salada crua variada à vontade</li>
+                                    <li>1 colher de sopa de azeite (10g)</li>
+                                </ul>
+                            </div>
+                            <div class="opcao">
+                                <h4>Opção 2 (mais leve):</h4>
+                                <ul>
+                                    <li>1 omelete com 2 ovos + espinafre ou brócolis refogados</li>
+                                    <li>1 fatia de pão integral</li>
+                                    <li>1 chá sem açúcar (hortelã, camomila, etc.)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="jantar">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ceia -->
+                <div class="card">
+                    <h3>🌜 Ceia - 22h</h3>
+                    <div class="meal-content">
+                        <p class="objetivo">🎯 Manter o metabolismo ativo e evitar catabolismo noturno</p>
+                        <div class="opcoes-container">
+                            <div class="opcao">
+                                <h4>Opção 1:</h4>
+                                <ul>
+                                    <li>100g de iogurte grego natural sem açúcar</li>
+                                    <li>1 colher de sopa de pasta de amendoim (15g)</li>
+                                </ul>
+                            </div>
+                            <div class="opcao">
+                                <h4>Opção 2:</h4>
+                                <ul>
+                                    <li>2 ovos cozidos</li>
+                                    <li>1 colher de sopa de azeite de oliva ou 1 punhado de castanhas (15g)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-complete" data-task="ceia">
+                            <i class="fas fa-play"></i> Iniciar Refeição
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Hidratação -->
+        <section class="hidratacao">
+            <h2><i class="fas fa-tint"></i> Hidratação</h2>
+            <div class="water-container">
+                <div class="water-info">
+                    <h3>🎯 Meta Diária: 2,5 - 3L de Água</h3>
+                    <div class="water-tips">
+                        <p><strong>Dicas:</strong></p>
+                        <ul>
+                            <li>200 ml ao acordar</li>
+                            <li>200 ml antes de cada refeição</li>
+                            <li>400-600 ml durante o treino</li>
+                        </ul>
+                    </div>
+                    <div class="water-counter">
+                        <span id="waterCount">0</span> / 12 copos
+                        <small>(cada copo = 250ml)</small>
+                    </div>
+                </div>
+                <div class="water-buttons">
+                    <button class="btn-water" onclick="addWater()">
+                        <i class="fas fa-glass-water"></i> +1 Copo (250ml)
+                    </button>
+                    <button class="btn-reset" onclick="resetWater()">
+                        <i class="fas fa-undo"></i> Resetar Água
+                    </button>
+                </div>
+                <div class="water-visual">
+                    <div class="water-glasses" id="waterGlasses"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Treinos -->
+        <section class="treinos">
+            <h2><i class="fas fa-dumbbell"></i> Plano de Treino</h2>
+            <div class="cards-container">
+                <!-- Treino Abdômen -->
+                <div class="card">
+                    <h3>💪 Treino de Abdômen</h3>
+                    <div class="workout-content">
+                        <div class="video-links">
+                            <a href="https://www.youtube.com/watch?v=Qh7SzMwJB_Q" target="_blank" class="video-link">
+                                <i class="fab fa-youtube"></i> Treino em pé para perder barriga (15 min)
+                            </a>
+                            <a href="https://www.tuasaude.com/6-exercicios-para-definir-o-abdomen-em-casa" target="_blank" class="video-link">
+                                <i class="fas fa-link"></i> 10 melhores exercícios para definir o abdômen
+                            </a>
+                        </div>
+                        <button class="btn-complete" data-task="treino-abdomen">
+                            <i class="fas fa-check"></i> Treino Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Treino Peito -->
+                <div class="card">
+                    <h3>🦸‍♂️ Treino de Peito</h3>
+                    <div class="workout-content">
+                        <div class="video-links">
+                            <a href="https://www.tuasaude.com/treino-de-peito-em-casa" target="_blank" class="video-link">
+                                <i class="fas fa-link"></i> Treino de peito em casa com peso do corpo
+                            </a>
+                            <a href="https://treinomestre.com.br/treino-de-peito-para-iniciantes-6-exercicios-com-video" target="_blank" class="video-link">
+                                <i class="fas fa-link"></i> Peito para iniciantes (vídeo explicativo)
+                            </a>
+                        </div>
+                        <button class="btn-complete" data-task="treino-peito">
+                            <i class="fas fa-check"></i> Treino Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Treino Braços -->
+                <div class="card">
+                    <h3>💪 Treino de Braços</h3>
+                    <div class="workout-content">
+                        <div class="video-links">
+                            <a href="https://www.youtube.com/watch?v=4YV4B88Oq_A" target="_blank" class="video-link">
+                                <i class="fab fa-youtube"></i> Treino rápido de braços em casa (15 min)
+                            </a>
+                            <a href="https://livel.com.br/treino-de-braco-em-casa" target="_blank" class="video-link">
+                                <i class="fas fa-link"></i> Guia com os 15 melhores exercícios para braços
+                            </a>
+                        </div>
+                        <button class="btn-complete" data-task="treino-bracos">
+                            <i class="fas fa-check"></i> Treino Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Treino Pernas -->
+                <div class="card">
+                    <h3>🦵 Treino de Pernas</h3>
+                    <div class="workout-content">
+                        <div class="video-links">
+                            <a href="https://www.youtube.com/watch?v=EF40JZApMYw" target="_blank" class="video-link">
+                                <i class="fab fa-youtube"></i> Treino intenso de pernas sem equipamentos
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=1iPqD12mlLs" target="_blank" class="video-link">
+                                <i class="fab fa-youtube"></i> Treino de pernas para iniciantes com foco em força
+                            </a>
+                        </div>
+                        <button class="btn-complete" data-task="treino-pernas">
+                            <i class="fas fa-check"></i> Treino Concluído
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reset Button -->
+        <div class="reset-day">
+            <button class="btn-reset-day" onclick="resetDay()">
+                <i class="fas fa-refresh"></i> Resetar Dia Completo
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ SW registrado com sucesso:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Falha ao registrar SW:', error);
+                    });
+            });
+        }
+        
+        // Detectar quando app pode ser instalado
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', function(e) {
+            console.log('📱 App pode ser instalado');
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Mostrar botão de instalação customizado
+            showInstallButton();
+        });
+        
+        function showInstallButton() {
+            // Criar botão de instalação se não existir
+            if (!document.getElementById('installButton')) {
+                const installBtn = document.createElement('button');
+                installBtn.id = 'installButton';
+                installBtn.innerHTML = '<i class="fas fa-download"></i> Instalar App';
+                installBtn.className = 'btn-install';
+                installBtn.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 1000;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 50px;
+                    font-weight: 600;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                `;
+                
+                installBtn.addEventListener('click', installApp);
+                document.body.appendChild(installBtn);
+                
+                // Auto-hide após 10 segundos
+                setTimeout(() => {
+                    if (installBtn.parentNode) {
+                        installBtn.remove();
+                    }
+                }, 10000);
+            }
+        }
+        
+        async function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`👤 Escolha do usuário: ${outcome}`);
+                deferredPrompt = null;
+                
+                // Remover botão
+                const installBtn = document.getElementById('installButton');
+                if (installBtn) installBtn.remove();
+            }
+        }
+        
+        // Detectar quando app foi instalado
+        window.addEventListener('appinstalled', function() {
+            console.log('🎉 App instalado com sucesso!');
+            alert('🎉 App instalado! Agora você pode usá-lo direto da tela inicial!');
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 
